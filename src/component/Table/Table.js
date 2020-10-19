@@ -2,50 +2,86 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './Table.css';
 
-export const Table = ({ className, style, Id, tableStructure, tableValue, ...props}) => {
+export const Table = ({ className, style, Id,tableStructure, tableValue,  ...props}) => {
     return (
-        <table 
-        className={className}
-        style={style}
-        {...props}
-        >
-            <thead>
-            <tr>
-                {tableStructure.map((val)=>{
-                    <th id={val.id}  >{val.heading}</th>
-                })}
-            </tr>
-            </thead>
-
-            <tbody>
-            {tableValue.map((val) => {
+        <div
+            className="table table-responsive"
+            >
+            <table 
+            className={"table table-hover "+ className}
+            style={style}
+            {...props}
+            >
+                <thead>
                 <tr>
-                    {tableStructure.map((str)=>{
-                    <td>{val[str.valLable]}</td>
-                })}
+                    {tableStructure.map((val)=>{
+                        debugger;
+                        return <th id={val.id}  >{val.heading}</th>
+                    })}
                 </tr>
-            })}
-            </tbody>
-        </table>
+                </thead>
+
+                <tbody>
+                {tableValue.map((val) => {
+                    return (
+                    <tr>
+                        {tableStructure.map((str)=>{
+                            return <td>{val[str.valLable]}</td>
+                    })}
+                    </tr>
+                    )
+                })}
+                </tbody>
+            </table>
+        </div>
     )
 }
 
 Table.propTypes = {
     /**
-     * Is this the principal call to action on the page?
+     * Is this add some class
      */
     className: PropTypes.string,
     /**
-     * What background color to use
+     * Add inline style
      */
     style: PropTypes.object,
+    /**
+     * set Id to Table
+     */
     Id: PropTypes.string,
-    tableStructure: PropTypes.array,
-    tableValue: PropTypes.array,
-
+     /**
+     * set table value
+     */
+    tableValue : PropTypes.array,
+    /**
+     * set table frame like Heading
+     */
+    tableStructure: PropTypes.array
   };
-  
-  Button.defaultProps = {
-    tableStructure: [],
-    tableValue: [],
+  Table.defaultProps = {
+    tableValue : [
+        {
+            getOne: "sdnkdns",
+            getTwo: "sdkmkcn"
+        },
+        {
+            getOne: "sdnkdns",
+            getTwo: "sdkmkcn"
+        }
+    ],
+    tableStructure: [
+        {
+            id: "first",
+            heading: 'First',
+            valLable: 'getOne'
+    
+        },
+        {
+            id: "second",
+            heading: 'second',
+            valLable: 'getTwo'
+    
+        }
+    ]
   };

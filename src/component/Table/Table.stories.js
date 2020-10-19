@@ -8,8 +8,14 @@ export default {
 
 const Template = (args) => <Table {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: 'Button',
+export const Light = Template.bind({});
+Light.args = {
+  className: 'table-light',
+  label: 'Table Light',
+};
+
+export const Dark = Template.bind({});
+Dark.args = {
+  className: 'table-dark',
+  label: 'Table Dark',
 };
